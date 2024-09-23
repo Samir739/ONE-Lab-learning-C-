@@ -1,31 +1,29 @@
-﻿class Fibonacci
-{
+﻿class Palindrome {
     static void Main(string[] args)
     {
-        Console.WriteLine("Enter any number greater then 0: ");
-        int firstnumber = Convert.ToInt32(Console.ReadLine());
-        long x = 0;
-        long y = 1;
-        for (int i = 0; i <= firstnumber-1; i++)
+        Console.WriteLine("Enter a word: ");
+        string userInput = Console.ReadLine().ToLower();//Takes user input and convert to lowercase.
+        if (IsPalindrome(userInput))
+            Console.WriteLine("The word "+userInput+ " is a palindrome.");//this will take a return value from boolean class, if there is true return
+                                                                          //this will print userinput as palindrome else not a palindrome
+        else
+            Console.WriteLine("The word " + userInput + " is not a palindrome.");
+      }
+    static string Reversestring(string userInput)
+    {
+        string reversed = "";
+        for (int i = userInput.Length - 1; i >= 0; i--)
         {
-            Console.WriteLine($"{Ordinal(i+1)} number: " + x);
-            long a = x;
-            x = y;
-            y = a + y;
+            reversed += userInput[i];
         }
-        static string Ordinal(int number)
-        {
-            if (number % 100 >= 11 && number % 100 <= 13)
-                return number + "th";
-
-            switch (number % 10)
-            {
-                case 1: return number + "st";
-                case 2: return number + "nd";
-                case 3: return number + "rd";
-                default: return number + "th";
-            }
-        }
+        return reversed.ToString();
     }
-}
+    static bool IsPalindrome(string userInput)
+        {
+            string reversedStr = Reversestring(userInput);
+            return userInput == reversedStr; // Returns true if palindrome, false otherwise
+        }
 
+        
+    }
+        
